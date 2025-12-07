@@ -1,0 +1,7 @@
+elastic:
+  index: audit
+es:
+  hostname: localhost
+  port: 9200
+  username: elastic
+  password: j_yk8UP3BG-F=F1ekXli
