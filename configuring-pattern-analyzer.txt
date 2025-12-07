@@ -1,0 +1,27 @@
+-- Configuring the pattern analyzer for the dump
+
+PUT /index-name/_analyze  (must be done before creating the index or adding any data to it)
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "my_text_analyzer": {
+          "type":      "pattern",
+          "pattern":   "<\/|<|>", 
+          "lowercase": true
+        }
+      }
+    }
+  }
+}
+
+This will cut the XML data at < or <\ or >
+
+to test the analyzer 
+GET /index-name/_analyze
+{
+  "analyzer": "my_text_analyzer",
+  "text": "<TimerRq><MsgRqHdr><RqUID>722ded42-6b3a-11ed-b88c-0a0b011c0000<\/RqUID><SCId>OTHER<\/SCId><ServiceId>0080-0501<\/ServiceId><FuncId>0001<\/FuncId><EnvelopeId>722deba86b3a11edb88c0a0b011c00000000000000000000<\/EnvelopeId><ClientDt>2022-11-23T17:23:48<\/ClientDt><\/MsgRqHdr><\/TimerRq>"
+}
+
+
